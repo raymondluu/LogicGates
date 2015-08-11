@@ -1,0 +1,312 @@
+
+Raymond Luu
+10/11/2012
+Homework 2
+
+--------------------------------------------------------------------------
+// or_gate.c simulates a bitwise or
+
+#include <stdio.h>
+#include "bit_def.h"
+
+bit or(bit a, bit b) {
+    bit r;
+
+    a = maskBit(a);    // make sure no spurious bits get by!
+    b = maskBit(b);
+    r = a | b;
+
+    return r;
+}
+
+// test driver code for OR. This can be expanded to complete this assignment
+// Remember to comment this section out when compiling to an object file.
+/*int main(void) {
+    bit a;
+    a = 0x01;
+    bit b;
+    b = 0x01;
+
+    printf("%d OR %d = %d\n",a, b, or(a, b));
+}*/
+--------------------------------------------------------------------------
+// not_gate.c simulates a bitwise not
+
+#include <stdio.h>
+#include "bit_def.h"
+
+bit not(bit a) {
+    bit r;
+
+    a = maskBit(a);    // make sure no spurious bits get by!
+    r = ~a & 0x01;
+
+    return r;
+}
+
+// test driver code for NOT. This can be expanded to complete this assignment
+// Remember to comment this section out when compiling to an object file.
+/*int main(void) {
+    bit a;
+    a = 0x01;
+
+    printf("NOT %d = %d\n",a, not(a));
+}*/
+--------------------------------------------------------------------------
+// xor_gate.c simulates a bitwise xor
+
+#include <stdio.h>
+#include "bit_def.h"
+
+bit xor(bit a, bit b) {
+    bit r;
+
+    a = maskBit(a);    // make sure no spurious bits get by!
+	b = maskBit(b);
+    r = a ^ b;
+
+    return r;
+}
+
+// test driver code for XOR. This can be expanded to complete this assignment
+// Remember to comment this section out when compiling to an object file.
+/*int main(void) {
+    bit a;
+    a = 0x01;
+	bit b;
+	b = 0x01;
+
+    printf("%d XOR %d = %d\n",a, b, xor(a, b));
+}*/
+--------------------------------------------------------------------------
+// nor_gate.c simulates a bitwise nor
+
+#include <stdio.h>
+#include "bit_def.h"
+
+bit nor(bit a, bit b) {
+    bit r;
+
+    a = maskBit(a);    // make sure no spurious bits get by!
+	b = maskBit(b);
+    r = ~(a | b) & 0x01;
+
+    return r;
+}
+
+// test driver code for NOR. This can be expanded to complete this assignment
+// Remember to comment this section out when compiling to an object file.
+/*int main(void) {
+    bit a;
+    a = 0x01;
+	bit b;
+	b = 0x00;
+
+    printf("%d NOR %d = %d\n",a, b, nor(a, b));
+}*/
+--------------------------------------------------------------------------
+// nand_gate.c simulates a bitwise nand
+
+#include <stdio.h>
+#include "bit_def.h"
+
+bit nand(bit a, bit b) {
+    bit r;
+
+    a = maskBit(a);    // make sure no spurious bits get by!
+    b = maskBit(b);
+	r = ~(a & b) & 0x01;
+
+    return r;
+}
+
+// test driver code for NAND. This can be expanded to complete this assignment
+// Remember to comment this section out when compiling to an object file.
+/*int main(void) {
+    bit a;
+    a = 0x01;
+	bit b;
+	b = 0x00;
+
+    printf("%d NAND %d = %d\n",a, b, nand(a, b));
+}*/
+--------------------------------------------------------------------------
+// logic.c displays the Truth Tables for these logic simulations
+
+#include <stdio.h>
+#include "bit_def.h"
+
+int main(void) {
+    bit a;
+    a = 0x00;
+	
+	bit b;
+	b = 0x00;
+	
+	bit a1;
+	a1 = 0x01;
+	
+	bit b1;
+	b1 = 0x01;
+
+	printf("\nAND GATE\n");
+	printf("a   b   r\n");
+	printf("-----------\n");
+    	printf("%d   %d   %d\n",a, b, and(a, b));
+	printf("%d   %d   %d\n",a, b1, and(a, b1));
+	printf("%d   %d   %d\n",a1, b, and(a1, b));
+	printf("%d   %d   %d\n",a1, b1, and(a1, b1));
+	
+	printf("\nOR GATE\n");
+	printf("a   b   r\n");
+	printf("-----------\n");
+    	printf("%d   %d   %d\n",a, b, or(a, b));
+	printf("%d   %d   %d\n",a, b1, or(a, b1));
+	printf("%d   %d   %d\n",a1, b, or(a1, b));
+	printf("%d   %d   %d\n",a1, b1, or(a1, b1));
+	
+	printf("\nNOT GATE\n");
+	printf("a   r\n");
+	printf("-----------\n");
+    	printf("%d   %d\n",a, not(a));
+	printf("%d   %d\n",a1, not(a1));
+	
+	printf("\nXOR GATE\n");
+	printf("a   b   r\n");
+	printf("-----------\n");
+    	printf("%d   %d   %d\n",a, b, xor(a, b));
+	printf("%d   %d   %d\n",a, b1, xor(a, b1));
+	printf("%d   %d   %d\n",a1, b, xor(a1, b));
+	printf("%d   %d   %d\n",a1, b1, xor(a1, b1));
+	
+	printf("\nNOR GATE\n");
+	printf("a   b   r\n");
+	printf("-----------\n");
+    	printf("%d   %d   %d\n",a, b, nor(a, b));
+	printf("%d   %d   %d\n",a, b1, nor(a, b1));
+	printf("%d   %d   %d\n",a1, b, nor(a1, b));
+	printf("%d   %d   %d\n",a1, b1, nor(a1, b1));
+	
+	printf("\nNAND GATE\n");
+	printf("a   b   r\n");
+	printf("-----------\n");
+    	printf("%d   %d   %d\n",a, b, nand(a, b));
+	printf("%d   %d   %d\n",a, b1, nand(a, b1));
+	printf("%d   %d   %d\n",a1, b, nand(a1, b));
+	printf("%d   %d   %d\n",a1, b1, nand(a1, b1));
+	
+		printf("\n~(~(a)|~(b))\n");
+	printf("a   b   r\n");
+	printf("-----------\n");
+    	printf("%d   %d   %d\n",a, b, not(or(not(a), not(b))));
+	printf("%d   %d   %d\n",a, b1, not(or(not(a), not(b1))));
+	printf("%d   %d   %d\n",a1, b, not(or(not(a1), not(b))));
+	printf("%d   %d   %d\n",a1, b1, not(or(not(a1), not(b1))));
+}
+--------------------------------------------------------------------------
+
+AND GATE
+
+a   b   r
+
+-----------
+
+0   0   0
+
+0   1   0
+
+1   0   0
+
+1   1   1
+
+
+
+OR GATE
+
+a   b   r
+
+-----------
+
+0   0   0
+
+0   1   1
+
+1   0   1
+
+1   1   1
+
+
+
+NOT GATE
+
+a   r
+
+-----------
+
+0   1
+
+1   0
+
+
+
+XOR GATE
+
+a   b   r
+
+-----------
+
+0   0   0
+
+0   1   1
+
+1   0   1
+
+1   1   0
+
+
+
+NOR GATE
+
+a   b   r
+
+-----------
+
+0   0   1
+
+0   1   0
+
+1   0   0
+
+1   1   0
+
+
+
+NAND GATE
+
+a   b   r
+
+-----------
+
+0   0   1
+
+0   1   1
+
+1   0   1
+
+1   1   0
+
+
+
+~(~(a)|~(b))
+
+a   b   r
+
+-----------
+
+0   0   0
+
+0   1   0
+
+1   0   0
+
+1   1   1
